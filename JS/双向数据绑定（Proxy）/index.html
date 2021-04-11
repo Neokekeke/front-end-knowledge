@@ -7,18 +7,22 @@
 		<title>Document</title>
 	</head>
 	<body>
+        <div id="app"></div>
 		<script>
+            const app = document.getElementById('app');
 			const target = {
 				name: "312",
 			};
 			handler = {
-				get: function (target, props, ...rest) {
+                // receiver接收者。可以是代理，也可以是继承自代理的对象。
+				get: function (target, props, receiver) {
 					// console.log('get---', target, props, ...rest);
 					return target[props];
 				},
-				set: function (target, props, value, rest) {
+				set: function (target, props, value, receiver) {
 					// console.log('set---', target, props, value, rest);
 					target[props] = value;
+                    app.innerHTML = `objProxy--${objProxy.name}--${objProxy.age}--${objProxy.super}`;
 				},
 			};
 			const objProxy = new Proxy(target, handler);

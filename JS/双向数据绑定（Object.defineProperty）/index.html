@@ -15,7 +15,9 @@
 		}
 	</style>
 	<body>
+        <div id="app"></div>
 		<script>
+            const app = document.getElementById('app');
 			function observer(data) {
 				//判断如果没有传值，或者传的值不是一个对象，就直接return
 				if (!data || typeof data !== "object") {
@@ -35,6 +37,7 @@
 					set(val) {
 						value = val;
 						console.log(key, "==>", value);
+                        app.innerHTML = value;
 					},
 				});
 			}
@@ -48,7 +51,8 @@
 			//这样就会对obj进行一个劫持，一旦改变obj内的属性，就返回相对应的数据，比如对obj的name进行了改变，observer()函数可能会返回一句obj的name已经改变为...
 
 			obj.name = "aaa";
-			obj.name2 = "666";
+			obj.name2 = "666"; // 新增的属性不能被正确监听
+            console.log('obj', obj)
 		</script>
 
 		<div>
