@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script defer src="./index.js"></script>
+    <link href="./index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- 盒子模型编写 -->
+    <!-- 怪异盒模型IE盒模型 border-box -->
+    <div>IE盒模型</div>
+    <div class="border-box">
+        区块大小是：(content + padding + border) + margin
+    </div>
+
+    <!-- 标准盒模型 content-box -->
+    <div>标准盒模型</div>
+    <div class="content-box">
+        区块大小是：content + padding + border + margin
+    </div>
+
+    <!-- display -->
+    <div>display</div>
+    <div class="flex-box">flex-box</div>
+    <div class="flex">
+        <p>flex</p> 
+        <div class="row">
+            <p>direction: row</p>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+    </div>
+</body>
+</html>

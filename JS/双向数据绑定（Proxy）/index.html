@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const target = {
+				name: "312",
+			};
+			handler = {
+				get: function (target, props, ...rest) {
+					// console.log('get---', target, props, ...rest);
+					return target[props];
+				},
+				set: function (target, props, value, rest) {
+					// console.log('set---', target, props, value, rest);
+					target[props] = value;
+				},
+			};
+			const objProxy = new Proxy(target, handler);
+			objProxy.name = "123";
+			objProxy.age = "18";
+			objProxy.super = "man";
+
+			for (let key in objProxy) {
+				console.log(`objProxy---${key}`, objProxy[key]);
+			}
+		</script>
+	</body>
+</html>

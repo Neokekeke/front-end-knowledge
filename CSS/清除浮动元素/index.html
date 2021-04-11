@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style type="text/css">
+        li {
+            list-style: none;
+            height: 100px;
+            width: 100px;
+            float: left;
+            background: red;
+            margin-left: 20px;
+        }
+        ul{
+            background: pink;
+        }
+        .e1 {
+            overflow: hidden;
+        }
+        .e3::before, .e3::after {
+            content: '';
+            clear: both;
+            display: block; /*一定要加这个*/
+        }
+    </style>
+    <p>子元素浮动，导致父元素高度坍塌</p>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <p style="margin-top: 150px;">1、父元素加入overflow：hidden，可以清除浮动</p>
+    <ul class="e1">
+        <li></li>
+        <li></li>
+    </ul>
+    <p>2、在浮动子元素后面加入同级的兄弟元素，样式为clear：both</p>
+    <ul class="e2">
+        <li></li>
+        <li></li>
+        <div style="clear: both"></div>
+    </ul>
+    <p>3、通过给父级元素添加双伪类before、after clear：both，达到清除浮动的目的</p>
+    <ul class="e3">
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

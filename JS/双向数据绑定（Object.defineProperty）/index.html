@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+	<style>
+		.cover {
+			border: 1px solid black;
+			display: grid;
+			grid-template-columns: 100px 100px 100px 100px;
+			grid-template-rows: 100px 100px 100px;
+		}
+	</style>
+	<body>
+		<script>
+			function observer(data) {
+				//判断如果没有传值，或者传的值不是一个对象，就直接return
+				if (!data || typeof data !== "object") {
+					return;
+				}
+				Object.keys(data).forEach((item) => {
+					observerProperty(data, item, data[item]);
+				});
+			}
+
+			function observerProperty(target, key, value) {
+				observer(value);
+				Object.defineProperty(target, key, {
+					get() {
+						return value;
+					},
+					set(val) {
+						value = val;
+						console.log(key, "==>", value);
+					},
+				});
+			}
+
+			let obj = {
+				id: 1,
+				name: "zhngsan",
+				age: 20,
+			};
+			observer(obj);
+			//这样就会对obj进行一个劫持，一旦改变obj内的属性，就返回相对应的数据，比如对obj的name进行了改变，observer()函数可能会返回一句obj的name已经改变为...
+
+			obj.name = "aaa";
+			obj.name2 = "666";
+		</script>
+
+		<div>
+			<div class="cover">
+				<div class="item item1 red">1</div>
+				<div class="item item2 black">2</div>
+			</div>
+		</div>
+	</body>
+</html>

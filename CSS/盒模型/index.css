@@ -1,0 +1,61 @@
+:root {
+    --color: black;
+    color: var(--color);
+}
+
+.border-box,
+.content-box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    background: lightcoral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-box {
+    box-sizing: content-box;
+}
+
+.flex-box {
+    width: 200px;
+    height: 200px;
+    background: lightcoral;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.flex {
+    border: 1px solid black;
+}
+
+.row, .column {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    border: 1px solid;
+}
+
+.row > div {
+    background: lightcoral;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.column {
+    flex-flow: column nowrap;
+}
+
+.column > div {
+    background: lightcoral;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
