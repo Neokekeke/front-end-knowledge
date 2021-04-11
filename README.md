@@ -1,2 +1,2 @@
 # knowledge-practice
-simple js or css feature practice
+knowledge collections and simple js or css feature practice 
