@@ -1,0 +1,161 @@
+<!--
+ * @Author: Neo Ke 
+ * @Date: 2021-04-13 15:50:15
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <style>
+            /* common **************************************************************/
+            :root {
+                --fixWidth: 150px;
+            }
+
+            .container {
+                margin: 50px 0;
+            }
+
+            p {
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .scope {
+                width: 100%;
+                height: 300px;
+                background: lightsalmon;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .left,
+            .middle,
+            .right {
+                border: 1px solid black;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: yellow;
+                text-align: center;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+
+            .left,
+            .right {
+                width: var(--fixWidth);
+            }
+
+            .middle {
+                background: lightskyblue;
+            }
+
+            /* float **************************************************************/
+
+            .float > .left,
+            .float > .right {
+                float: left;
+            }
+
+            .float > .right {
+                float: right;
+            }
+
+            .float > .middle {
+                margin: auto 100px;
+            }
+
+            /* flex **************************************************************/
+
+            .flex {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .flex > .middle {
+                flex: 1;
+            }
+
+            /* grid **************************************************************/
+
+            .grid {
+                display: grid;
+                grid-template-columns: var(--fixWidth) auto var(--fixWidth);
+            }
+
+            /* absolute **************************************************************/
+            .absolute > .left,
+            .absolute > .right {
+                position: absolute;
+                width: var(--fixWidth);
+                height: 100%;
+                left: 0;
+                top: 0;
+            }
+
+            .absolute > .right {
+                right: 0 !important;
+                left: auto;
+            }
+
+            .absolute > .middle {
+                margin: 0 150px;
+            }
+        </style>
+        <h1>三列圣杯布局</h1>
+
+        <!-- 左右float，中间auto -->
+        <div class="container">
+            <p>float 布局</p>
+            <div class="scope float">
+                <div class="left">float: left</div>
+                <div class="right">float: right</div>
+                <div class="middle">
+                    margin: 100px auto；<br />
+                    因为middle是自适应宽度，所以需要放在最后
+                </div>
+            </div>
+        </div>
+
+        <!-- display: flex -->
+        <div class="container">
+            <p>flex 布局</p>
+            <div class="scope flex">
+                <div class="left">固定在容器左边150px</div>
+                <div class="middle">fles: 1; <br />中间宽度自适应</div>
+                <div class="right">固定在容器右边150px</div>
+            </div>
+        </div>
+
+        <!-- display: grid -->
+        <div class="container">
+            <p>grid 布局</p>
+            <div class="scope grid">
+                <div class="left"></div>
+                <div class="middle">
+                    grid-template-columns: 150px auto 150px;
+                    <br />划分为3列，中间自适应，两边固定宽度
+                </div>
+                <div class="right"></div>
+            </div>
+        </div>
+
+        <!-- position: absolute -->
+        <div class="container">
+            <p>absolute 布局</p>
+            <div class="scope absolute">
+                <div class="left">绝对定位布局 left: 0;</div>
+                <div class="middle">marin: 0 150px;</div>
+                <div class="right">绝对定位布局 right: 0;</div>
+            </div>
+        </div>
+    </body>
+</html>

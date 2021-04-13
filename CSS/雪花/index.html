@@ -1,0 +1,106 @@
+<!--
+ * @Author: Neo Ke 
+ * @Date: 2021-04-13 15:18:49
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 雪花的主要思想是使用伪元素和rotate旋转角度来实现-->
+        <style>
+            li[data-li='a'] {
+                background: wheat;
+            }
+            #ul {
+                width: 350px;
+                height: 350px;
+                background: lightsalmon;
+                list-style-type: none;
+                padding: 0;
+                margin: 100px auto;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            div {
+                width: 200px;
+                height: 200px;
+                position: relative;
+                margin: 100px auto;
+                transition: all 1s linear;
+            }
+            div:hover {
+                animation: rote 1.5s infinite ease;
+            }
+            li {
+                width: 10px;
+                height: 200px;
+                background: wheat;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+            }
+            li::before {
+                content: '';
+                width: 20px;
+                height: 20px;
+                border: 10px solid wheat;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%) rotate(45deg);
+                border-top-color: transparent;
+                border-left-color: transparent;
+            }
+            li::after {
+                content: '';
+                width: 20px;
+                height: 20px;
+                border: 10px solid wheat;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%) rotate(45deg);
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+            }
+            li:nth-child(1) {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            li:nth-child(2) {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+            li:nth-child(3) {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+            li:nth-child(4) {
+                transform: translate(-50%, -50%) rotate(135deg);
+            }
+            li:nth-child(5) {
+                transform: translate(-50%, -50%) rotate(180deg);
+            }
+            @keyframes rote {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+
+        <ul id="ul">
+            <div>
+                <li data-li="a"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </div>
+        </ul>
+    </body>
+</html>

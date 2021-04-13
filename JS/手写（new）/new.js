@@ -35,3 +35,16 @@ function myNew() {
 let obj = myNew(Person, '666', 18);
 obj.say();
 console.log(obj);
+
+
+// new 一个对象的过程
+function new2(fn, ...args) {
+    const obj = {};
+    obj.__proto__ = fn.prototype;
+    fn.apply(obj, args);
+    return obj;
+}
+
+var me = new2(Person, '666', '777')
+me.say();
+console.log("me", me)
