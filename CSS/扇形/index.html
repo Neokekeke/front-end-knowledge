@@ -1,0 +1,36 @@
+<!--
+ * @Author: Neo Ke 
+ * @Date: 2021-04-13 11:00:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #shanxing {
+            width: 0;
+            height: 0;
+            border: 50px solid lightcoral;
+            border-radius: 50%;
+            border-left-width: 50px;
+            border-left-color: lightsalmon;
+            border-top-color: gold;
+            border-right-color: orange;
+            border-bottom-color: peru;
+        }
+        #shanxing:hover {
+            animation: rote 0.3s infinite linear;
+        }
+
+        @keyframes rote {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    <div id="shanxing"></div>
+</body>
+</html>
