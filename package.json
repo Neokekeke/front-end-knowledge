@@ -1,0 +1,23 @@
+{
+  "name": "knowledge-practice",
+  "version": "1.0.0",
+  "description": "前端知识积累 <br> \r knowledge collections and simple js or css feature practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neokekeke/knowledge-practice.git"
+  },
+  "author": "Neokekeke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Neokekeke/knowledge-practice/issues"
+  },
+  "homepage": "https://github.com/Neokekeke/knowledge-practice#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-redux": "^7.2.3"
+  }
+}

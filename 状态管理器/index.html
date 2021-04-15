@@ -1,0 +1,37 @@
+<!--
+ * @Author: Neo Ke 
+ * @Date: 2021-04-14 15:50:38
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>mini store seems like redux</title>
+    </head>
+    <body>
+        <script type="module">
+            import { createStore } from './store.js'
+            import { reducer } from './reducer.js'
+            import { applyMiddleware, applyMiddlewareX } from './applyMiddleware.js'
+            import {logger1, logger} from './middleware/logger1.js'
+            import { logger2 } from './middleware/logger2.js'
+
+            const store = createStore(reducer, applyMiddlewareX(logger, logger2))
+            store.subscribe(() => {
+                console.log('观察者1', store.getState())
+            });
+            store.subscribe(() => {
+                console.log('观察者2', store.getState())
+            })
+
+            // applyMiddleware(store, logger2, logger1)
+            store.dispatch({ type: 'add' })
+            // console.log('state', store.getState())
+
+            document.getElementById('app').innerHTML = store.getState().count
+        </script>
+
+        <div id="app"></div>
+    </body>
+</html>

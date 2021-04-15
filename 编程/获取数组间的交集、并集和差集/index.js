@@ -9,18 +9,16 @@ function getCrossArr() {
     if (args.length == 0 || args.length == 1) {
         return args[0]
     } else {
-        const cross_obj = {};
-        const cross_arr = [];
-        const arr = args;
+        const cross_obj = {}
+        const cross_arr = []
+        const arr = args
         const len = arr.length
-       
-        args.map(arg => {
-            arg.map(item => {
-                if (!cross_arr.includes(item)) {
-                    cross_arr.push(item);
-                } 
-            })
-        });
+
+        args.map((item) => {
+            for (let i = 0; i < len; i += 1) {
+                
+            }
+        })
 
         console.log('cross', arr, cross_arr)
     }
