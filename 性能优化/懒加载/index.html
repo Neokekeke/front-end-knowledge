@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>懒加载的几种方法</title>
+	</head>
+	<body>
+		<style>
+			.lazy-load-container {
+				display: flex;
+				flex-direction: column;
+			}
+			.img {
+				width: 300px;
+				height: 300px;
+				margin: 50px;
+			}
+		</style>
+		<div class="lazy-load-container">
+			<img class="img" alt="" />
+			<img class="img" alt="" />
+			<img class="img" alt="" />
+		</div>
+
+		<script>
+			/* 懒加载的原理就是图片没有在可视区域就不加载，图片出现在可视区域就加载
+               所以可以通过获取图片的位置和可视区域的高度来判断图片是不是需要显示
+
+               1、使用 element.getBoundingClientRect返回这个元素的top,left,right,bottom
+               window.innerHeight是获取可视区域的高度，是包含滚动条的高度的
+               window.document.documentElement.clientWidth也是获取可视区域高度，不包含滚动条高度
+
+               2、使用 IntersectionObserver元素观察者对象，监听这个元素的visible是不是在可视区域内
+            */
+			function lazyload(type = "getBoundingClientRect") {
+				const imgList = Array.from(
+					document.getElementsByClassName("img")
+				);
+
+				if (type == "getBoundingClientRect") {
+					imgList.map((img, index) => {
+						const top = img.getBoundingClientRect().top;
+						const visibelHeight =
+							document.documentElement.clientHeight;
+						console.log(top, visibelHeight);
+						if (top < visibelHeight && !img.getAttribute("src")) {
+							img.setAttribute("src", `./pkq${index + 1}.jpg`);
+						}
+					});
+				} else if (type == "IntersectionObserver") {
+					const ob = new IntersectionObserver((...rest) => {
+						rest[0].map((list, index) => {
+							// console.log(rest);
+							if (list.isIntersecting && !list.target.getAttribute("src")) {
+								list.target.setAttribute("src", `./pkq${index + 1}.jpg`);
+								ob.unobserve(list.target);
+							}
+						});
+					});
+					imgList.forEach((img) => {
+						ob.observe(img);
+					});
+				}
+			}
+			lazyload("IntersectionObserver");
+
+			window.onscroll = function () {
+				lazyload("IntersectionObserver");
+			};
+		</script>
+	</body>
+</html>

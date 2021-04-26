@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>测试</title>
+	</head>
+	<body>
+		<script>
+			function throttle(fn, delay, options) {
+				let timer = null; // 计时器
+				let isFirst = true;
+				return function () {
+					const args = arguments; // 保留调用时传入的参数
+					console.log("isFirst", isFirst, args, timer);
+					if (isFirst) {
+						// 是否第一次执行
+						isFirst = false;
+                        fn.apply(this, args);
+                        return false;
+					}
+					if (timer) {
+						// 如果计时器还在说明还没执行结束，则继续执行
+						return false;
+					}
+					timer = setTimeout(function () {
+						clearTimeout(timer);
+						timer = null;
+						fn.apply(this, args);
+					}, delay || 2000);
+				};
+            }
+            
+            function debounce(fn, delay, options) {
+				let timer = null; // 计时器
+				return function () {
+					const args = arguments; // 保留调用时传入的参数
+					console.log(args, timer);
+					if (timer) {
+						// 如果计时器还在说明还没执行结束，则继续执行
+                        clearTimeout(timer);
+                        timer = null;
+					}
+					timer = setTimeout(function () {
+						fn.apply(this, args);
+					}, delay || 1000);
+				};
+			}
+
+			function normalClick() {
+				document.getElementById("n-click").innerHTML += 1;
+			}
+
+			let throttleClick = throttle(() => {
+				document.getElementById("t-click").innerHTML += 1;
+            });
+            
+            function normalChange() {
+                console.log('直接就触发')
+            }
+
+            let debouncelChange = debounce(() => {
+                console.log('debounce 触发')
+            })
+		</script>
+
+		<!-- 节流 -->
+		<div>
+			正常点击事件：<button onclick="normalClick()">点击</button>
+			<p id="n-click"></p>
+		</div>
+		<div>
+			节流点击事件：<button onclick="throttleClick()">点击</button>
+			<p id="t-click"></p>
+		</div>
+
+		<!-- 防抖 -->
+		<div>
+			正常输入框：<input id="input" type="text" onchange="normalChange()" />
+		</div>
+		<div>
+			防抖输入框：<input
+				id="de-input"
+				type="text"
+				onchange="debouncelChange()"
+			/>
+		</div>
+	</body>
+</html>
