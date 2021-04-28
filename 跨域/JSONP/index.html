@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>jsonp</title>
+	</head>
+	<body>
+		<script>
+			function callback(data) {
+				console.log("get data", data);
+			}
+			// 这里在当前文件夹起多一个服务，用8080端口，相当于服务器端
+			// 客户端端口用本地起5500，模拟跨域请求，script标签不存在跨域
+			const url = "http://127.0.0.1:8080/b.js";
+			const script = document.createElement("script");
+            script.src = url;
+            
+            // 加了crossorigin后必须在服务器设置cors( Cross-Origin Resource Sharing ):  Access-Control-Allow-Origin: *
+            // 否则会报跨域
+            script.setAttribute('crossorigin', 'anonymous')
+			document.body.appendChild(script);
+		</script>
+	</body>
+</html>
