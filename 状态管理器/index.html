@@ -13,14 +13,20 @@
         <script type="module">
             import { createStore } from './store.js'
             import { reducer } from './reducer.js'
-            import { applyMiddleware, applyMiddlewareX } from './applyMiddleware.js'
-            import {logger1, logger} from './middleware/logger1.js'
+            import {
+                applyMiddleware,
+                applyMiddlewareX,
+            } from './applyMiddleware.js'
+            import { logger1, logger } from './middleware/logger1.js'
             import { logger2 } from './middleware/logger2.js'
 
-            const store = createStore(reducer, applyMiddlewareX(logger, logger2))
+            const store = createStore(
+                reducer,
+                applyMiddlewareX(logger, logger2)
+            )
             store.subscribe(() => {
                 console.log('观察者1', store.getState())
-            });
+            })
             store.subscribe(() => {
                 console.log('观察者2', store.getState())
             })

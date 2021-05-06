@@ -1,3 +1,7 @@
+<!--
+ * @Author: Neo Ke 
+ * @Date: 2021-04-26 14:44:16
+-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -28,7 +32,7 @@
 			/* 懒加载的原理就是图片没有在可视区域就不加载，图片出现在可视区域就加载
                所以可以通过获取图片的位置和可视区域的高度来判断图片是不是需要显示
 
-               1、使用 element.getBoundingClientRect返回这个元素的top,left,right,bottom
+               1、使用 element.getBoundingClientRect返回这个元素的top,left,right,bottom 方法返回元素的大小及其相对于视口的位置
                window.innerHeight是获取可视区域的高度，是包含滚动条的高度的
                window.document.documentElement.clientWidth也是获取可视区域高度，不包含滚动条高度
 
